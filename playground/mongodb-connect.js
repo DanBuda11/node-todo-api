@@ -6,8 +6,8 @@
 
 const { MongoClient, ObjectID } = require('mongodb');
 
-var obj = new ObjectID();
-console.log(obj);
+// var obj = new ObjectID();
+// console.log(obj);
 
 // ES6 destructuring
 // var user = {name: 'Dan', age: 38};
