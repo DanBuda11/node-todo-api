@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
+const _ = require('lodash');
 
 var UserSchema = new mongoose.Schema({
 	email: {
@@ -30,6 +31,15 @@ var UserSchema = new mongoose.Schema({
 		} 
 	}]
 });
+
+// This doesn't need to be called; it overrides the default
+// So it will be called automatically
+UserSchema.methods.toJSON = function() {
+	var user = this;
+	var userObject = user.toObject();
+
+	return _.pick(userObject, ['_id', 'email']);
+};
 
 // Don't use arrow function; need to bind this
 UserSchema.methods.generateAuthToken = function() {
