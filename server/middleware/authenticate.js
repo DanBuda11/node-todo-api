@@ -1,3 +1,4 @@
+// Authentication middleware
 var {User} = require('./../models/user');
 
 var authenticate = (req, res, next) => {

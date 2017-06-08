@@ -1,9 +1,12 @@
+// Import dependencies needed for testing.
 const {ObjectID} = require('mongodb');
 const jwt = require('jsonwebtoken');
 
+// Import models.
 const {Todo} = require('./../../models/todo');
 const {User} = require('./../../models/user');
 
+// Create user data for testing.
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
 const users = [{
@@ -24,6 +27,7 @@ const users = [{
 	}]
 }];
 
+// Create todo data for testing.
 const todos = [{
 	_id: new ObjectID(),
 	text: 'First test todo',
@@ -40,12 +44,14 @@ const todos = [{
 	_creator: userTwoId
 }];
 
+// Populate the todo seed data for testing.
 const populateTodos = (done) => {
 	Todo.remove({}).then(() => {
 		return Todo.insertMany(todos);
 	}).then(() => done());
 };
 
+// Populate the user seed data for testing.
 const populateUsers = (done) => {
 	User.remove({}).then(() => {
 		var userOne = new User(users[0]).save();

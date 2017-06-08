@@ -1,3 +1,5 @@
+// Test file for working with hashing.
+
 const { SHA256 } = require('crypto-js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');

@@ -1,3 +1,5 @@
+// Test file for working with connections to MongoDB database.
+
 // const MongoClient = require('mongodb').MongoClient;
 
 // Create a variable called MongoClient by using

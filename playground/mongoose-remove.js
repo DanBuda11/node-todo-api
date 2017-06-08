@@ -1,3 +1,5 @@
+// Test file for removing todos from the database.
+
 const { ObjectID } = require('mongodb');
 const { mongoose } = require('./../server/db/mongoose');
 const { Todo } = require('./../server/models/todo');

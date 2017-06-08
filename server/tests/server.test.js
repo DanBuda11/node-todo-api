@@ -7,6 +7,7 @@ const { Todo } = require('./../models/todo');
 const { User } = require('./../models/user');
 const {todos, populateTodos, users, populateUsers} = require('./seed/seed');
 
+// Run beforeEach to clean/repopulate seed data for testing.
 beforeEach(populateUsers);
 beforeEach(populateTodos);
 

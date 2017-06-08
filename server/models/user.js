@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
+// Create mongoose User model.
 var UserSchema = new mongoose.Schema({
 	email: {
 		type: String,
@@ -34,7 +35,7 @@ var UserSchema = new mongoose.Schema({
 });
 
 // This doesn't need to be called; it overrides the default
-// So it will be called automatically
+// so it will be called automatically
 UserSchema.methods.toJSON = function() {
 	var user = this;
 	var userObject = user.toObject();
@@ -42,7 +43,7 @@ UserSchema.methods.toJSON = function() {
 	return _.pick(userObject, ['_id', 'email']);
 };
 
-// Don't use arrow function; need to bind this
+// Don't use arrow functions; need to bind "this"
 UserSchema.methods.generateAuthToken = function() {
 	var user = this;
 	var access = 'auth';

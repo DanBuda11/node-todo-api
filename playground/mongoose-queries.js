@@ -1,3 +1,5 @@
+// Test file for finding a user in the database by userID.
+
 const { ObjectID } = require('mongodb');
 const { mongoose } = require('./../server/db/mongoose');
 const { Todo } = require('./../server/models/todo');

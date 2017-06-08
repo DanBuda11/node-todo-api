@@ -1,3 +1,4 @@
+// Import "secret key"
 require('./config/config');
 
 const { ObjectID } = require('mongodb');
@@ -15,6 +16,7 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
+// Make new todo item
 app.post('/todos', authenticate, (req, res) => {
 	var todo = new Todo({
 		text: req.body.text,
@@ -28,6 +30,7 @@ app.post('/todos', authenticate, (req, res) => {
 	});
 });
 
+// Retrieve list of user's todo items
 app.get('/todos', authenticate, (req, res) => {
 	Todo.find({
 		_creator: req.user._id
@@ -38,6 +41,7 @@ app.get('/todos', authenticate, (req, res) => {
 	});
 });
 
+// Retrieve single user todo item
 app.get('/todos/:id', authenticate, (req, res) => {
 	var id = req.params.id;
 
@@ -59,6 +63,7 @@ app.get('/todos/:id', authenticate, (req, res) => {
 	});
 });
 
+// Delete a single user todo item
 app.delete('/todos/:id', authenticate, async (req, res) => {
 	const id = req.params.id;
 
@@ -80,6 +85,7 @@ app.delete('/todos/:id', authenticate, async (req, res) => {
 	}
 });
 
+// Update an existing user todo item
 app.patch('/todos/:id', authenticate, (req, res) => {
 	var id = req.params.id;
 	var body = _.pick(req.body, ['text', 'completed']);
@@ -95,8 +101,6 @@ app.patch('/todos/:id', authenticate, (req, res) => {
 		body.completedAt = null;
 	}
 
-	// findOneAnd Update
-
 	Todo.findOneAndUpdate({
 		_id: id,
 		_creator: req.user._id
@@ -111,7 +115,7 @@ app.patch('/todos/:id', authenticate, (req, res) => {
 	})
 });
 
-// POST users
+// Create a new user
 app.post('/users', async (req, res) => {
 	try {
 		const body = _.pick(req.body, ['email', 'password']);
@@ -125,10 +129,12 @@ app.post('/users', async (req, res) => {
 	}
 });
 
+
 app.get('/users/me', authenticate, (req, res) => {
 	res.send(req.user);
 });
 
+// User login
 app.post('/users/login', async (req, res) => {
 	try {
 		const body = _.pick(req.body, ['email', 'password']);
@@ -140,6 +146,7 @@ app.post('/users/login', async (req, res) => {
 	}
 });
 
+// User logout
 app.delete('/users/me/token', authenticate, async (req, res) => {
 	try {
 		await req.user.removeToken(req.token);
