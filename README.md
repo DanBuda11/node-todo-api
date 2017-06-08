@@ -13,4 +13,4 @@ A working API for a todo list built with Node.js 8.0.0 which includes the use of
 ### Future Plans
 
 * Convert all appropriate functions to async-await
-* Build out a front-end UI to make it a fully useable app
+* Build out a front-end UI to make it a fully usable app
