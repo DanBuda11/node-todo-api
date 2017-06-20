@@ -129,7 +129,7 @@ app.post('/users', async (req, res) => {
 	}
 });
 
-
+// Get user info and return if authenticated
 app.get('/users/me', authenticate, (req, res) => {
 	res.send(req.user);
 });
